@@ -13,8 +13,9 @@ import io.noties.markwon.MarkwonConfiguration
 import io.noties.markwon.SoftBreakAddsNewLinePlugin
 import io.noties.markwon.SpanFactory
 import io.noties.markwon.editor.MarkwonEditor
-import io.noties.markwon.editor.handler.EmphasisEditHandler
-import io.noties.markwon.editor.handler.StrongEmphasisEditHandler
+// REMOVED library handlers:
+// import io.noties.markwon.editor.handler.EmphasisEditHandler
+// import io.noties.markwon.editor.handler.StrongEmphasisEditHandler
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin
 import io.noties.markwon.ext.tables.TablePlugin
 import io.noties.markwon.ext.tasklist.TaskListPlugin
@@ -31,8 +32,10 @@ import org.qosp.notes.preferences.PreferenceRepository
 import org.qosp.notes.ui.editor.markdown.BlockQuoteHandler
 import org.qosp.notes.ui.editor.markdown.CodeBlockHandler
 import org.qosp.notes.ui.editor.markdown.CodeHandler
+import org.qosp.notes.ui.editor.markdown.EmphasisHandler
 import org.qosp.notes.ui.editor.markdown.HeadingHandler
 import org.qosp.notes.ui.editor.markdown.StrikethroughHandler
+import org.qosp.notes.ui.editor.markdown.StrongEmphasisHandler
 import org.qosp.notes.ui.utils.coil.CoilImagesPlugin
 import org.qosp.notes.ui.utils.resolveAttribute
 
@@ -78,8 +81,8 @@ object MarkwonModule {
 
     private fun getMarkWonEditor(markwon: Markwon): MarkwonEditor {
         return MarkwonEditor.builder(markwon)
-            .useEditHandler(EmphasisEditHandler())
-            .useEditHandler(StrongEmphasisEditHandler())
+            .useEditHandler(EmphasisHandler()) // Use our custom handler
+            .useEditHandler(StrongEmphasisHandler()) // Use our custom handler
             .useEditHandler(CodeHandler())
             .useEditHandler(CodeBlockHandler())
             .useEditHandler(BlockQuoteHandler())
